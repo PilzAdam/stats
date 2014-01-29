@@ -150,10 +150,8 @@ local function save_stats()
 end
 
 local timer = 0
-local timer2 = 0
 minetest.register_globalstep(function(dtime)
 	timer = timer + dtime
-	timer2 = timer2 + dtime
 	-- NOTE: Set this to a higher value to remove some load from the server
 	if timer < 0 then
 		return
@@ -162,7 +160,7 @@ minetest.register_globalstep(function(dtime)
 		stats.increase_stat(player, "played_time", timer)
 	end
 	timer = 0
-	if timer2 > 30 then
+	if timer > 30 then
 		save_stats()
 	end
 end)
